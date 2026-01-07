@@ -226,7 +226,7 @@ func (i *Indexer) Store(ctx context.Context, docs []*schema.Document, opts ...in
 		insertOpt = insertOpt.WithColumns(col)
 	}
 
-	result, err := i.client.Insert(ctx, insertOpt)
+	result, err := i.client.Upsert(ctx, insertOpt)
 	if err != nil {
 		return nil, fmt.Errorf("[Indexer.Store] failed to insert documents: %w", err)
 	}
